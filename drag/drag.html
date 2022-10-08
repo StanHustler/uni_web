@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        *{
+            margin: 0;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            margin: 10px;
+            float: left;
+        }
+
+        div:nth-child(2) {
+            border: 1px solid green;
+        }
+
+        div:nth-child(3) {
+            border: 1px solid blue;
+        }
+
+        p {
+            height: 25px;
+            background-color: pink;
+            line-height: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <p id="p1" draggable="true">1111</p>
+        <p id="p2" draggable="true">2222</p>
+        <p id="p3" draggable="true">3333</p>
+        <p id="p4" draggable="true">4444</p>
+    </div>
+
+    <div id="div2"></div>
+    <div id="div3"></div>
+</body>
+
+<script>
+    document.ondragstart = function(event){
+        console.log("drag!")
+        event.dataTransfer.setData("text/html",event.target.id);
+    }
+
+    // document.ondrag
+    document.ondragenter = function(event){
+        console.log("enter!");
+    }
+
+    document.ondragover = function(event){
+        return false;
+    }
+
+    document.ondrop = function(event) {
+        var id = event.dataTransfer.getData("text/html");
+
+        event.target.appendChild(document.getElementById(id));
+
+    }
+
+
+
+</script>
+</html>

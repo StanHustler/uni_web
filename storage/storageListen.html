@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>new</span>
+    <span id="new"></span>
+    <br>
+    <span>old</span>
+    <span id="old"></span>
+
+</body>
+
+<script>
+    var n = document.getElementById('new');
+    var o = document.getElementById('old');
+    window.addEventListener('storage', function(e){
+        n.innerHTML=e.newValue;
+        o.innerHTML=e.oldValue;
+    })
+</script>
+
+</html>

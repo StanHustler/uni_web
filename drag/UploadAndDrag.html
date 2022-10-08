@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2021037100 李贇奇</title>
+    <link href="https://www.layuicdn.com/layui/css/layui.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: rgb(242, 242, 242);
+            /* border: 1px solid black; */
+            width: 85%;
+            margin: 0 auto;
+        }
+        p,.container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            
+        }
+        div {
+            /* border: 1px solid black; */
+            margin: 20px;
+        }
+        .pic {
+            width: 300px;
+            height: 200px;
+            border: 1px dashed black;
+        }
+        .pic i{
+            opacity: 0.8;
+        }
+        .container2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ::file-selector-button {
+            display: inline-block;
+            vertical-align: middle;
+            height: 38px;
+            line-height: 38px;
+            border: 1px solid transparent;
+            padding: 0 18px;
+            background-color: #009688;
+            color: #fff;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 2px;
+            cursor: pointer;
+            
+        }
+
+        img {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="layui-card">
+        <div class="layui-card-header"><b>上传文件</b></div>
+        <div class="layui-card-body">
+            <div class="container">
+                <input type="file" id="upload">
+                <button type="button" class="layui-btn" onclick="putImg()"> 上传文件 </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card">
+        <div class="layui-card-header"><b>操作区域</b></div>
+        <div class="layui-card-body">
+            <div class="container">
+                <div id="show" class="pic container2"> 
+                    <i class="layui-icon layui-icon-upload-drag" style="font-size: 80px; "></i>
+                </div>
+                <div id="del" class="pic container2">
+                    <i class="layui-icon layui-icon-delete" style="font-size: 80px; "></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <div class="layui-card">
+        <div class="layui-card-header"><b>画廊区域</b></div>
+        <div class="layui-card-body">
+            <div class="container" id="pics">
+                <div class="pic container2" id="gallery1">
+                    <i class="layui-icon layui-icon-picture" style="font-size: 80px; "></i>
+                </div>
+                <div class="pic container2" id="gallery2">
+                    <i class="layui-icon layui-icon-picture" style="font-size: 80px; "></i>
+                </div>        
+                <div class="pic container2">
+                    <i class="layui-icon layui-icon-picture" style="font-size: 80px; "></i>
+                </div>
+                <div class="pic container2">
+                    <i class="layui-icon layui-icon-picture" style="font-size: 80px; "></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script>
+    // Drag
+    document.ondragstart = function(event){
+        event.dataTransfer.setData("id",event.target.id);
+    }
+    document.ondragover = function(event){
+        return false;
+    }
+
+    document.querySelector("#pics").ondrop = function(event) {
+        var id = event.dataTransfer.getData("id");
+        event.target.innerHTML="";
+        event.target.appendChild(document.getElementById(id));
+    }
+
+    document.querySelector("#del").ondrop = function(event) {
+        var id = event.dataTransfer.getData("id");
+        event.target.appendChild(document.getElementById(id));
+        event.target.removeChild(document.getElementById(id));
+    }
+
+    // upload
+    function putImg(){
+        t = new Date()
+        document.querySelector('#show').innerHTML="<img src='' id= "+ t.getTime() +">";
+
+        var file=document.querySelector('#upload');
+        var img=document.querySelector('#show img');
+        var reader = new FileReader();
+        
+        reader.readAsDataURL(file.files[0]);
+        reader.onload = function(){
+            img.src = this.result;
+        }
+    }
+</script>
+</html>

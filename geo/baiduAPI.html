@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=7a6QKaIilZftIMmKGAFLG7QT1GLfIncg"></script>
+	<title>添加信息窗口</title>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+    function showPosition(position)
+{
+	x =  position.coords.latitude ;
+	y=  position.coords.longitude;	
+
+	// 百度地图API功能
+	var map = new BMapGL.Map("allmap");
+	var point = new BMapGL.Point(y, x);
+	map.centerAndZoom(point, 20);
+	map.enableScrollWheelZoom(true);
+	var marker = new BMapGL.Marker(point);  // 创建标注
+	map.addOverlay(marker);              // 将标注添加到地图中
+	var opts = {
+	    width : 200,     // 信息窗口宽度
+	    height: 100,     // 信息窗口高度
+	    title : "浙江万里学院" , // 信息窗口标题
+	    message:"地址：宁波市钱湖南路8号"
+	}
+	var infoWindow = new BMapGL.InfoWindow("地址：宁波市钱湖南路8号", opts);  // 创建信息窗口对象 
+	marker.addEventListener("click", function(){          
+		map.openInfoWindow(infoWindow, point); //开启信息窗口
+	}); 
+
+
+    
+}
+
+
+	if (navigator.geolocation)
+	{
+		navigator.geolocation.getCurrentPosition(showPosition);
+	}
+</script>
