@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var a=[
+        {
+            name:'a',
+            f:[{s:"s" ,age:"11"},{s:"as" ,age:"11"}]
+        },
+        {
+            name:'b',
+            f:[{s:"bs1" ,age:"11"},{s:"bs2" ,age:"11"}]
+        },
+        {
+            name:'c',
+            f:[{s:"cs1" ,age:"11"},{s:"cs2" ,age:"11"}]
+        }
+    ]
+
+    a.forEach(item => {
+        console.log(item.name);
+        item.f.forEach(i=>{
+            console.log(" ->" + i.s + i.age)
+        })
+    });
+</script>
+</html>

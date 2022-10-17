@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="cavsElem"></canvas>
+</body>
+<script>
+    //获得画布
+    var canvas = document.getElementById('cavsElem')
+    //通过画布对象获得画笔
+    var context = canvas.getContext('2d');
+    var w=600;
+    canvas.width=w;
+    canvas.height=w;
+    canvas.style.border="5px solid #000";
+    //1
+    context.beginPath();
+    context.moveTo(0,0);
+    context.lineTo(w,0);
+    context.lineTo(w/2,w/2);
+    context.closePath();
+    context.fillStyle="#208058";
+    context.fill();
+    context.lineWidth=5;
+    context.stroke();
+    // 2
+    context.beginPath();
+    context.moveTo(0,0);
+    context.lineTo(w/2,w/2);
+    context.lineTo(0,w);
+    context.closePath();
+    context.fillStyle="#F7093D";
+    context.fill();
+    context.lineWidth=5;
+    context.stroke();
+    // 3
+    context.beginPath();
+    context.moveTo(w,0);
+    context.lineTo(3*w/4,w/4);
+    context.lineTo(w,w/2);
+    context.closePath();
+    context.fillStyle="#F7093D";
+    context.fill();
+    context.lineWidth=5;
+    context.stroke();
+    // 4
+    context.beginPath();
+    context.moveTo(w/2,w/2);
+    context.lineTo(3*w/4,w/4);
+    context.lineTo(w,w/2);
+    context.lineTo(3*w/4,3*w/4);
+    context.closePath();
+    context.fillStyle="#ECCF64";
+    context.fill();
+    context.lineWidth=5;
+    context.stroke();
+    // 5
+    context.beginPath();
+    context.moveTo(w/2,w/2);
+    context.lineTo(w/4,3*w/4);
+    context.lineTo(3*w/4,3*w/4);
+    context.closePath();
+    context.fillStyle="#FA93E7";
+    context.fill();
+    context.lineWidth=5;
+    context.stroke();
+    // 6
+    context.beginPath();
+    context.moveTo(w/4,3*w/4);
+    context.lineTo(3*w/4,3*w/4);
+    context.lineTo(w/2,w);
+    context.lineTo(0,w);
+    context.closePath();
+    context.fillStyle="#C354AF";
+    context.fill();
+    context.lineWidth=5;
+    context.stroke();
+    // 7
+    context.beginPath();
+    context.moveTo(w,w/2);
+    context.lineTo(w/2,w);
+    context.lineTo(w/2,w);
+    context.lineTo(w,w);
+    context.closePath();
+    context.fillStyle="#C70A30";
+    context.fill();
+    context.lineWidth=5;
+    context.stroke();
+</script>
+</html>

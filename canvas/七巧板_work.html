@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/layui@2.7.6/dist/css/layui.css" rel="stylesheet">
+    <title>计算机2101 李贇奇</title>
+    <style>
+        body {
+            background-color: #fefefe;
+        }
+        .a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        li {
+            width: 30%;
+        }
+
+        .layui-tab-card>.layui-tab-title {
+            background-color: bisque;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layui-tab layui-tab-card" style="width: 75%; height: 700px; margin: 0 auto;">
+        <ul class="layui-tab-title">
+            <li class="layui-this">🌞经典样式</li>
+            <li>💗爱心</li>
+            <li>👋点这里评分</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show"> <div class="a"><canvas id="cavsElem"></canvas></div> </div>
+            <div class="layui-tab-item"><div class="a"><canvas id="heart"></canvas></div></div>
+            <div class="layui-tab-item">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                    <legend>滑动星星以评分⬇️</legend>
+                </fieldset>
+                <form>
+                    <div id="rate"></div>
+                    <button id="btn" type="button" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal">确定评分</button>
+                </form>
+
+            </div>
+        </div>
+      </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+<script src="https://unpkg.com/layui@2.7.6/dist/layui.js"></script>
+<script>
+    var w=400;  
+    var basic=[
+        {mx:0,my:0,color:"#208058", line:[{x:w,y:0},{x:w/2,y:w/2}]},
+        {mx:0,my:0,color:"#F7093D",line:[{x:w/2,y:w/2},{x:0,y:w}]},
+        {mx:w,my:0,color:"#F7093D",line:[{x:3*w/4,y:w/4},{x:w,y:w/2}]},
+        {mx:w/2,my:w/2,color:"#ECCF64",line:[{x:3*w/4,y:w/4},{x:w,y:w/2},{x:3*w/4,y:3*w/4}]},
+        {mx:w/2,my:w/2,color:"#FA93E7",line:[{x:w/4,y:3*w/4},{x:3*w/4,y:3*w/4}]},
+        {mx:w/4,my:3*w/4,color:"#C354AF",line:[{x:3*w/4,y:3*w/4},{x:w/2,y:w},{x:0,y:w}]},
+        {mx:w,my:w/2,color:"#C70A30",line:[{x:w/2,y:w},{x:w,y:w}]},
+    ];
+    var heart=[
+        {mx:w/2,my:0,color:"orange",line:[{x:w/4,y:w/4},{x:w/2,y:w/2},{x:3*w/4,y:w/4}]},
+        {mx:w,my:0,color:"red",line:[{x:w/2,y:w/2},{x:3*w/2,y:w/2}]},
+        {mx:w/4,my:w/4,color:"purple",line:[{x:0,y:w/2},{x:w/4,y:w*3/4}]},
+        {mx:w/4,my:w*3/4,color:"#97CBFF",line:[{x:w/4,y:w/4},{x:w/2,y:w/2},{x:w/2,y:w}]},
+        {mx:w/2,my:w/2,color:"yellow",line:[{x:3*w/2,y:w/2},{x:w,y:w}]},
+        {mx:w/2,my:w/2,color:"green",line:[{x:w/2,y:w},{x:w,y:w}]},
+        {mx:w/2,my:w,color:"#FF44FF",line:[{x:w,y:w},{x:3*w/4,y:5*w/4}]},
+    ]
+
+    function drawBasic(){
+        var canvas = document.getElementById("cavsElem");
+        var context = canvas.getContext('2d');
+        canvas.width=w;
+        canvas.height=w;
+        canvas.style.border="2px solid #000";
+
+        basic.forEach(element => {
+            context.beginPath();
+            context.moveTo(element.mx,element.my);
+                
+            element.line.forEach(ii=>{
+                context.lineTo(ii.x,ii.y);
+            })
+
+            context.closePath();
+            context.fillStyle=element.color;
+            context.fill();
+            context.lineWidth=3;
+            context.stroke();
+
+        });
+    }
+
+    function drawHeart(){
+        var canvas = document.getElementById("heart");
+        var context = canvas.getContext('2d');
+        canvas.width=3*w/2;
+        canvas.height=5*w/4;
+        canvas.style.border="3px solid #000";
+
+        heart.forEach(element => {
+            context.beginPath();
+            context.moveTo(element.mx,element.my);
+                
+            element.line.forEach(ii=>{
+                context.lineTo(ii.x,ii.y);
+            })
+
+            context.closePath();
+            context.fillStyle=element.color;
+            context.fill();
+            context.lineWidth=3;
+            context.stroke();
+
+        })
+    }
+
+    
+    drawBasic();
+    drawHeart();
+    
+    layui.use('rate', function(){
+    var rate = layui.rate;
+    var ins1 = rate.render({
+      elem: '#rate',
+      value : 5,
+      readonly: true
+    });
+  });
+  $("button").click(()=>{
+    layer.msg('谢谢老师给我的100昏😄✨🎉'); 
+  })
+</script>
+</html>

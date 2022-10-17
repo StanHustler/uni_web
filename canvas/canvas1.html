@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="cas" width="300" height="300">浏览器不支持</canvas>
+    <script>
+        var context = document.getElementById('cas').getContext('2d');
+        context.moveTo(10,10);
+        context.lineTo(300,10);
+        context.lineWidth='10';
+        context.strokeStyle='red';
+        context.lineCap='round';
+        context.stroke();
+    </script>
+</body>
+</html>

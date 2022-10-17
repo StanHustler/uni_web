@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            margin: 0 auto;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cavsElem"></canvas>
+</body>
+<script>
+    var w=600;
+     var a=[
+        {mx:0,my:0,color:"#208058", line:[{x:w,y:0},{x:w/2,y:w/2}]},
+        {mx:0,my:0,color:"#F7093D",line:[{x:w/2,y:w/2},{x:0,y:w}]},
+        {mx:w,my:0,color:"#F7093D",line:[{x:3*w/4,y:w/4},{x:w,y:w/2}]},
+        {mx:w/2,my:w/2,color:"#ECCF64",line:[{x:3*w/4,y:w/4},{x:w,y:w/2},{x:3*w/4,y:3*w/4}]},
+        {mx:w/2,my:w/2,color:"#FA93E7",line:[{x:w/4,y:3*w/4},{x:3*w/4,y:3*w/4}]},
+        {mx:w/4,my:3*w/4,color:"#C354AF",line:[{x:3*w/4,y:3*w/4},{x:w/2,y:w},{x:0,y:w}]},
+        {mx:w,my:w/2,color:"#C70A30",line:[{x:w/2,y:w},{x:w,y:w}]},
+     ];
+
+    var canvas = document.getElementById('cavsElem')
+    var context = canvas.getContext('2d');
+    
+    canvas.width=w;
+    canvas.height=w;
+    canvas.style.border="5px solid #000";
+    
+
+    a.forEach(element => {
+        context.beginPath();
+        context.moveTo(element.mx,element.my);
+        
+        
+        element.line.forEach(ii=>{
+            console.log(ii);
+            context.lineTo(ii.x,ii.y);
+        })
+
+        context.closePath();
+        context.fillStyle=element.color;
+        context.fill();
+        context.lineWidth=5;
+        context.stroke();
+
+    });
+
+</script>
+</html>
