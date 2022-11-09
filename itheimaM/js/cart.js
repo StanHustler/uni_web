@@ -2,55 +2,55 @@
  * ITCAST WEB
  * Created by zhousg on 2016/5/3.
  */
-window.onload = function(){
+ window.onload = function(){
     /*
-    * 1.ÏÔÊ¾µ¯³ö²ã
-    * 2.×ö¶¯»­
-    * 3.É¾³ıºĞ×ÓĞèÒª×ö
-    * 4.µã»÷È¡Ïû°´Å¥  ¹Ø±Õ  µ¯³ö²ã
+    * 1.æ˜¾ç¤ºå¼¹å‡ºå±‚
+    * 2.åšåŠ¨ç”»
+    * 3.åˆ é™¤ç›’å­éœ€è¦åš
+    * 4.ç‚¹å‡»å–æ¶ˆæŒ‰é’®  å…³é—­  å¼¹å‡ºå±‚
     * */
 
 
-    /*»ñÈ¡µ¯³ö²ã*/
+    /*è·å–å¼¹å‡ºå±‚*/
     var hmWin = document.querySelector('.hm_win');
-    /*»ñÈ¡¿ò*/
+    /*è·å–æ¡†*/
     var hmWinBox = hmWin.querySelector('.hm_win_box');
-    /*»ñÈ¡ËùÓĞµÄÉ¾³ı°´Å¥*/
+    /*è·å–æ‰€æœ‰çš„åˆ é™¤æŒ‰é’®*/
     var deleteList = document.querySelectorAll('.deleteBox');
 
-    /*¼ÇÂ¼µ±Ç°µã»÷µÄÊÇ°´¸ö°´Å¥*/
+    /*è®°å½•å½“å‰ç‚¹å‡»çš„æ˜¯æŒ‰ä¸ªæŒ‰é’®*/
     var deleteBtn = null;
 
     for(var i = 0 ; i < deleteList.length ; i ++){
         deleteList[i].onclick = function(){
-            /*1.ÏÔÊ¾µ¯³ö²ã*/
+            /*1.æ˜¾ç¤ºå¼¹å‡ºå±‚*/
             hmWin.style.display = "block";
-            /*2.×ö¶¯»­*/
+            /*2.åšåŠ¨ç”»*/
             hmWinBox.classList.add('bounceInDown');
-            /*É¾³ıºĞ×ÓĞèÒª×ö*/
+            /*åˆ é™¤ç›’å­éœ€è¦åš*/
             console.log(this);
 
             deleteBtn = this;
             var up = deleteBtn.querySelector('.up');
             console.log(up);
-            /*¼Ó¹ı¶É*/
+            /*åŠ è¿‡æ¸¡*/
             up.style.webkitTransition = "all 1s";
             up.style.transition = "all 1s";
-            /*¶¨ÒåĞı×ªÔ­µã*/
+            /*å®šä¹‰æ—‹è½¬åŸç‚¹*/
             up.style.webkitTransformOrigin = "0 5px";
             up.style.transformOrigin = "0 5px";
-            /*¼Ó¸Ä±ä*/
+            /*åŠ æ”¹å˜*/
             up.style.webkitTransform = "rotate(-30deg) translateY(2px)";
             up.style.transform = "rotate(-30deg) translateY(2px)";
         }
     }
 
-    /*4.µã»÷È¡Ïû°´Å¥  ¹Ø±Õ  µ¯³ö²ã*/
+    /*4.ç‚¹å‡»å–æ¶ˆæŒ‰é’®  å…³é—­  å¼¹å‡ºå±‚*/
     hmWinBox.querySelector('.cancel').onclick = function(){
         hmWin.style.display = "none";
         hmWinBox.classList.remove('bounceInDown');
 
-        /*µ±Ç°µã»÷¹ı*/
+        /*å½“å‰ç‚¹å‡»è¿‡*/
         if(deleteBtn){
             var up = deleteBtn.querySelector('.up');
             up.style.webkitTransform = "none";
